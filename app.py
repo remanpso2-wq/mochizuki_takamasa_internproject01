@@ -1,11 +1,14 @@
 from flask import Flask
+import os  # ← 追加
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def index():
-    return 'Flask動作確認成功！'
+    return "Flask動作確認成功！"
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))  # ← Render対応
+    app.run(host="0.0.0.0", port=port)        # ← Render対応
+
 
